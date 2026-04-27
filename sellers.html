@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sellers | Ultimate Online Store</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">U</span>
+        <div>
+          <p>Ultimate Online Store</p>
+          <small>Buyer-first conversational marketplace</small>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Store</a>
+        <a href="history.html">Order History</a>
+        <a class="is-active" href="sellers.html">Sellers</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main class="page-shell page-stack">
+      <section class="hero-card card compact-hero">
+        <div>
+          <p class="eyebrow">Seller profiles</p>
+          <h1>Compare merchants by price, rating, and product style</h1>
+          <p class="lede">
+            This page keeps seller information visible so buyers can make fast
+            decisions without chasing contact details manually.
+          </p>
+        </div>
+        <span class="status-pill" id="seller-mode-badge">Loading data source...</span>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Marketplace directory</p>
+            <h2>Sellers and their products</h2>
+          </div>
+        </div>
+        <div id="seller-list" class="seller-grid"></div>
+      </section>
+    </main>
+
+    <script type="module" src="assets/js/pages/sellers.js"></script>
+  </body>
+</html>

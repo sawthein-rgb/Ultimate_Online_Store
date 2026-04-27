@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace History | Ultimate Online Store</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">U</span>
+        <div>
+          <p>Ultimate Online Store</p>
+          <small>4-role buyer and seller marketplace demo</small>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Marketplace</a>
+        <a class="is-active" href="history.html">Order History</a>
+        <a href="sellers.html">Sellers</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main class="page-shell page-stack">
+      <section class="hero-card card compact-hero">
+        <div>
+          <p class="eyebrow">Marketplace history</p>
+          <h1>Requests, seller replies, and confirmed orders</h1>
+          <p class="lede">
+            This page shows the buyer request flow from the first submitted request,
+            through the three seller offers, to the final chosen order.
+          </p>
+        </div>
+        <span class="status-pill" id="history-mode-badge">Loading data source...</span>
+      </section>
+
+      <section class="info-strip">
+        <article class="stat-card">
+          <span>Buyer requests</span>
+          <strong id="request-count">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Seller offers</span>
+          <strong id="offer-count">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Orders</span>
+          <strong id="order-count">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Payments</span>
+          <strong id="payment-count">0</strong>
+        </article>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Orders</p>
+            <h2>Final chosen orders</h2>
+          </div>
+        </div>
+        <div id="orders-list" class="stack-list"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Requests</p>
+            <h2>Buyer request history</h2>
+          </div>
+        </div>
+        <div id="requests-list" class="stack-list"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Offers</p>
+            <h2>Seller reply history</h2>
+          </div>
+        </div>
+        <div id="offers-list" class="stack-list"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Payments</p>
+            <h2>Payment simulation history</h2>
+          </div>
+        </div>
+        <div id="payments-list" class="stack-list"></div>
+      </section>
+    </main>
+
+    <script type="module" src="assets/js/pages/history.js"></script>
+  </body>
+</html>

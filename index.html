@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Online Store Marketplace</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body class="page-home">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">U</span>
+        <div>
+          <p>Ultimate Online Store</p>
+          <small>buyer and seller marketplace</small>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a class="is-active" href="index.html">Marketplace</a>
+        <a href="history.html">Order History</a>
+        <a href="sellers.html">Sellers</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main class="page-shell page-stack">
+      <section class="hero-card card">
+        <div>
+          <p class="eyebrow">Shop your way</p>
+          <h1>Tell us what you need. Get offers. Pick the best one.</h1>
+          <p class="lede">
+            Just tell us what you're looking for, like you would in a store. 
+            Different sellers will show you what they have, with prices and options. 
+            You can compare everything and choose the one you like most.
+          </p>
+        </div>
+
+        <div class="hero-side">
+          <span class="status-pill" id="store-mode-badge">Loading data source...</span>
+          <span class="soft-badge" id="active-request-badge">No request yet</span>
+        </div>
+
+        <div class="chip-row">
+          <button class="chip" data-example="something sweet, 2 hot, 3">
+            something sweet, 2 hot, 3
+          </button>
+          <button class="chip" data-example="something light, fresh, and energizing">
+            something light, fresh, and energizing
+          </button>
+          <button class="chip" data-example="cheap and simple">
+            cheap and simple
+          </button>
+          <button class="chip" data-example="nasi padang">
+            nasi padang
+          </button>
+          <button class="chip" data-example="hot, max 21k">
+            hot, max 21k
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Marketplace roles</p>
+            <h2>Buyer and seller tabs</h2>
+          </div>
+        </div>
+
+        <div class="role-tabs" id="role-tabs">
+          <button class="role-tab is-active" data-tab-target="buyer-panel" type="button">
+            Buyer
+          </button>
+          <button class="role-tab" data-tab-target="seller-panel-1" type="button">
+            Seller 1
+          </button>
+          <button class="role-tab" data-tab-target="seller-panel-2" type="button">
+            Seller 2
+          </button>
+          <button class="role-tab" data-tab-target="seller-panel-3" type="button">
+            Seller 3
+          </button>
+        </div>
+
+        <div class="tab-panels">
+          <section class="tab-panel is-active" id="buyer-panel">
+            <div class="marketplace-layout">
+              <div class="marketplace-main">
+                <article class="subcard marketplace-thread-card">
+                  <div class="section-head">
+                    <div>
+                      <p class="eyebrow">Marketplace Chat</p>
+                      <h3>Everything happens in one buyer conversation</h3>
+                    </div>
+                    <span class="muted-copy" id="buyer-chat-scope-label">No active chat yet</span>
+                  </div>
+
+                  <div id="buyer-marketplace-empty-state" class="empty-state">
+                    Start with one buyer request. The assistant will turn it into seller offers, negotiation, and checkout inside this chat thread.
+                  </div>
+
+                  <div class="chat-thread marketplace-thread hidden" id="buyer-marketplace-thread"></div>
+                </article>
+
+                <div class="hidden">
+                  <div id="request-empty-state" class="empty-state">
+                    No request sent yet. Start with a natural-language request above.
+                  </div>
+                  <div id="request-summary-card" class="request-summary-card hidden">
+                    <h3 id="request-summary-title">No request yet</h3>
+                    <p class="meta-line" id="request-summary-text"></p>
+                    <div class="pill-row" id="request-summary-pills"></div>
+                  </div>
+                  <div id="offers-empty-state" class="empty-state">
+                    After you send a request, Seller 1, Seller 2, and Seller 3 will each reply here.
+                  </div>
+                  <div class="comparison-grid" id="buyer-offer-grid"></div>
+                  <div id="buyer-chat-empty-state" class="empty-state">
+                    Send one buyer request to open local chat with Seller 1, Seller 2, and Seller 3.
+                  </div>
+                  <div class="chat-grid hidden" id="buyer-chat-grid"></div>
+                </div>
+              </div>
+
+              <aside class="marketplace-side">
+                <article class="subcard">
+                  <div class="section-head">
+                    <div>
+                      <p class="eyebrow">Buyer Request</p>
+                      <h3>Start or continue the deal</h3>
+                    </div>
+                  </div>
+
+                  <form id="buyer-request-form" class="request-form-grid compact-request-form">
+                    <label class="field full-span">
+                      <span>Natural-language request</span>
+                      <textarea
+                        id="buyer-query"
+                        rows="3"
+                        placeholder="Example: something sweet, 2 hot, 3"
+                        required
+                      ></textarea>
+                    </label>
+
+                    <label class="field">
+                      <span>Quantity</span>
+                      <input id="buyer-quantity" type="number" min="1" value="1" />
+                    </label>
+
+                    <label class="field">
+                      <span>Budget (max total)</span>
+                      <input id="buyer-budget" type="number" min="0" placeholder="21000" />
+                    </label>
+
+                    <label class="field">
+                      <span>Ranking</span>
+                      <select id="buyer-ranking">
+                        <option value="auto">Auto from request</option>
+                        <option value="best-match">Best match</option>
+                        <option value="cheapest">Cheapest price</option>
+                        <option value="simple">Easiest / fastest</option>
+                      </select>
+                    </label>
+
+                    <label class="field full-span">
+                      <span>Delivery address</span>
+                      <textarea
+                        id="buyer-address"
+                        rows="2"
+                        placeholder="Jl. Merdeka No. 10, Jakarta"
+                      ></textarea>
+                    </label>
+
+                    <button class="button primary" type="submit">Send request to all sellers</button>
+                    <p class="helper-text full-span" id="request-status">
+                      Requests will be stored in <code>requests</code> and seller replies in
+                      <code>offers</code>.
+                    </p>
+                  </form>
+
+                  <form id="buyer-direct-chat-form" class="chat-composer top-divider">
+                    <div class="section-head">
+                      <div>
+                        <p class="eyebrow">Negotiate</p>
+                        <h3>Message one seller inside the deal</h3>
+                      </div>
+                      <span class="muted-copy" id="offer-count-label">No offers yet</span>
+                    </div>
+
+                    <label class="field">
+                      <span>Seller target</span>
+                      <select id="buyer-direct-seller">
+                        <option value="">Choose a seller first</option>
+                      </select>
+                    </label>
+
+                    <label class="field">
+                      <span>Target total price (optional)</span>
+                      <input id="buyer-direct-price" type="number" min="0" placeholder="18000" />
+                    </label>
+
+                    <label class="field">
+                      <span>Message</span>
+                      <textarea
+                        id="buyer-direct-message"
+                        rows="3"
+                        placeholder="Example: Can you do another price?"
+                      ></textarea>
+                    </label>
+
+                    <button class="button secondary" type="submit">Send buyer message</button>
+                    <p class="helper-text" id="buyer-direct-status">
+                      Use this to negotiate with one seller after the offers appear.
+                    </p>
+                  </form>
+                </article>
+
+                <article class="subcard">
+                  <div class="section-head">
+                    <div>
+                      <p class="eyebrow">Chosen Deal</p>
+                      <h3>Accept an offer and confirm</h3>
+                    </div>
+                  </div>
+
+                  <div id="selected-offer-empty-state" class="empty-state">
+                    Accept one seller offer from the chat to prepare checkout.
+                  </div>
+
+                  <div id="selected-offer-panel" class="selected-offer-panel hidden">
+                    <div class="selected-offer-top">
+                      <div>
+                        <p class="eyebrow" id="selected-offer-seller-label">Seller</p>
+                        <h3 id="selected-offer-product-name">No offer selected</h3>
+                        <p class="meta-line" id="selected-offer-reply"></p>
+                      </div>
+                      <span class="price-badge" id="selected-offer-total">Rp0</span>
+                    </div>
+
+                    <div class="summary-list">
+                      <div class="summary-row">
+                        <span>Unit price</span>
+                        <strong id="selected-offer-unit-price">Rp0</strong>
+                      </div>
+                      <div class="summary-row">
+                        <span>Quantity</span>
+                        <strong id="selected-offer-quantity">1</strong>
+                      </div>
+                      <div class="summary-row">
+                        <span>Address</span>
+                        <strong id="selected-offer-address">-</strong>
+                      </div>
+                      <div class="summary-row">
+                        <span>Contact</span>
+                        <strong id="selected-offer-contact">-</strong>
+                      </div>
+                    </div>
+
+                    <div class="pill-row" id="selected-offer-badges"></div>
+                  </div>
+
+                  <form id="confirm-order-form" class="confirm-form-grid compact-request-form">
+                    <label class="field">
+                      <span>Buyer name</span>
+                      <input id="confirm-buyer-name" type="text" placeholder="Alya Putri" />
+                    </label>
+
+                    <label class="field">
+                      <span>Phone number</span>
+                      <input id="confirm-buyer-phone" type="tel" placeholder="+62 812 3456 7890" />
+                    </label>
+
+                    <button id="confirm-order-button" class="button primary" type="submit" disabled>
+                      Confirm chosen order
+                    </button>
+                    <p class="helper-text full-span" id="confirm-status">
+                      Orders will be stored in <code>orders</code> and recorded in
+                      <code>history</code>.
+                    </p>
+                  </form>
+                </article>
+
+                <article class="subcard">
+                  <div class="section-head">
+                    <div>
+                      <p class="eyebrow">Notifications</p>
+                      <h3>Buyer alerts</h3>
+                    </div>
+                    <span class="muted-copy" id="buyer-notification-count-label">No alerts</span>
+                  </div>
+
+                  <div id="buyer-notifications-empty-state" class="empty-state">
+                    Seller messages and order status updates will appear here.
+                  </div>
+
+                  <div class="stack-list hidden" id="buyer-notifications-list"></div>
+                </article>
+
+                <article class="subcard">
+                  <div class="section-head">
+                    <div>
+                      <p class="eyebrow">Maps</p>
+                      <h3>Preview buyer-to-seller route</h3>
+                    </div>
+                    <span class="muted-copy" id="buyer-map-distance">Distance unavailable</span>
+                  </div>
+
+                  <div id="buyer-map-empty-state" class="empty-state">
+                    Accept one seller offer and fill the buyer address to preview the route.
+                  </div>
+
+                  <div id="buyer-map-panel" class="route-panel hidden">
+                    <div class="route-meta" id="buyer-route-meta"></div>
+                    <div class="map-shell">
+                      <div class="map-canvas" id="buyer-route-map"></div>
+                    </div>
+                    <div class="offer-actions">
+                      <a
+                        class="button secondary"
+                        id="buyer-route-link"
+                        href="#"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Open route in Google Maps
+                      </a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="subcard">
+                  <div class="section-head">
+                    <div>
+                      <p class="eyebrow">Payment And Tracking</p>
+                      <h3>Simulate payment and follow order progress</h3>
+                    </div>
+                  </div>
+
+                  <div id="payment-empty-state" class="empty-state">
+                    Confirm one chosen offer first. Then you can simulate payment and track cooking, delivery, and arrival.
+                  </div>
+
+                  <div id="payment-panel" class="payment-panel hidden">
+                    <div class="selected-offer-top">
+                      <div>
+                        <p class="eyebrow" id="payment-order-label">Order</p>
+                        <h3 id="payment-order-title">No order yet</h3>
+                        <p class="meta-line" id="payment-order-meta"></p>
+                      </div>
+                      <span class="price-badge" id="payment-amount">Rp0</span>
+                    </div>
+
+                    <div class="summary-list">
+                      <div class="summary-row">
+                        <span>Order status</span>
+                        <strong id="payment-order-status">awaiting-payment</strong>
+                      </div>
+                      <div class="summary-row">
+                        <span>Payment status</span>
+                        <strong id="payment-status-badge">pending</strong>
+                      </div>
+                      <div class="summary-row">
+                        <span>Order progress</span>
+                        <strong id="fulfillment-status-badge">confirmed</strong>
+                      </div>
+                      <div class="summary-row">
+                        <span>Method</span>
+                        <strong>Demo simulation</strong>
+                      </div>
+                      <div class="summary-row">
+                        <span>Last update</span>
+                        <strong id="payment-updated-at">-</strong>
+                      </div>
+                    </div>
+
+                    <div class="pill-row" id="fulfillment-steps"></div>
+
+                    <div class="offer-actions" id="payment-actions">
+                      <button class="button primary" type="button" data-payment-action="paid">
+                        Mark as paid
+                      </button>
+                      <button class="button secondary" type="button" data-payment-action="failed">
+                        Mark as failed
+                      </button>
+                      <button class="button ghost" type="button" data-payment-action="pending">
+                        Reset to pending
+                      </button>
+                    </div>
+
+                    <p class="helper-text" id="payment-status-text">
+                      Payment changes update the order record and payment record together.
+                    </p>
+                  </div>
+                </article>
+              </aside>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="seller-panel-1">
+            <div class="seller-workspace">
+              <article class="subcard" id="seller-card-1"></article>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="seller-panel-2">
+            <div class="seller-workspace">
+              <article class="subcard" id="seller-card-2"></article>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="seller-panel-3">
+            <div class="seller-workspace">
+              <article class="subcard" id="seller-card-3"></article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="assets/js/pages/home.js"></script>
+  </body>
+</html>
