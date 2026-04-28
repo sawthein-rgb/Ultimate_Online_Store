@@ -9,10 +9,9 @@
 
 ### Student Information
 
-- **Name:** `Your Name`
-- **Student ID:** `Your Student ID`
+- **Name:** `Saw Patrick`
+- **Student ID:** `001202500100`
 - **Course / Subject:** `Web Application Development`
-- **Lecturer:** `Teacher Name`
 - **Submission Date:** `27 April 2026`
 
 ## 1. Abstract
